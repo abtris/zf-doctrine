@@ -1,0 +1,6 @@
+*~
+# logs
+tests/logs/**
+logs/**
+# ide
+.idea/*
