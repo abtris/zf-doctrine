@@ -1,0 +1,46 @@
+aclRole:
+  columns:
+    id:
+      type: integer(11)
+      autoincrement: true
+      primary: true
+    name: string(255)
+    protected: boolean
+
+aclRoleParents:
+  columns:
+    id:
+      type : integer(11)
+      autoincrement: true
+      primary: true
+    role: 
+      type: string(255)
+    parent:
+      type: string(255)
+  relations:
+
+
+aclRule:
+  columns:
+    id:
+      type: integer(11)
+      autoincrement: true
+      primary: true
+    aclKey: string(50)
+    role: string(255)
+    resource: string(255)
+    rule: 
+      type: enum
+      length: 5
+      values: ['allow', 'deny']
+
+aclRuleRights:
+  columns:
+    id:
+      type: integer(11)
+      autoincrement: true
+      primary: true
+    rule_id: 
+      type: integer(11)
+    rightName: 
+      type: string(50)

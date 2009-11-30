@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1);
+date_default_timezone_set('Europe/London');
+/*
+ * Setup libraries & autoloaders
+ */
+set_include_path(dirname(__FILE__).'/../library'
+        . PATH_SEPARATOR . dirname(__FILE__).'/../application/models'
+        . PATH_SEPARATOR . dirname(__FILE__).'/../application/models/generated'
+        . PATH_SEPARATOR . get_include_path());
+require 'Zend/Loader/Autoloader.php';
+$autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader->registerNamespace('Zucchi_');
+$autoloader->registerNamespace('Doctrine_');
+$autoloader->registerNamespace('Doctrine');
+$autoloader->registerNamespace('Base');
+ 
+/*
+ * Set super-global data
+ */
+Doctrine_Manager::connection("mysql://doctrine:doctrine@127.0.0.1/doctrine");
+ 
+/*
+ * Configure Doctrine
+ */
+$doctrine_config = array(
+        'data_fixtures_path'  =>  dirname(__FILE__).'/../application/doctrine/data/fixtures',
+        'models_path'         =>  dirname(__FILE__).'/../application/models',
+        'migrations_path'     =>  dirname(__FILE__).'/../application/doctrine/migrations',
+        'sql_path'            =>  dirname(__FILE__).'/../application/doctrine/data/sql',
+        'yaml_schema_path'    =>  dirname(__FILE__).'/../application/doctrine/schema'
+        );
+
+$cli = new Doctrine_Cli($doctrine_config);
+$cli->run($_SERVER['argv']);

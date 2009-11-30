@@ -13,5 +13,7 @@ doctrine.
 
 Branch: tutorial2
 
+http://subversion.zucchi.co.uk/listing.php?repname=titan
+
 Make db yaml scheme and generate database and ZF models with correct names.
 

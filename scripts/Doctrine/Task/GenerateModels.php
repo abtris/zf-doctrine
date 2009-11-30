@@ -26,8 +26,8 @@ class Doctrine_Task_GenerateModels extends Doctrine_Task_GenerateModelsDb
             'classPrefix' => 'Model_',
             'baseClassPrefix' => 'Base_',
             'baseClassesDirectory' => null,
-            'classPrefixFiles' => false,
-            'generateAccessors' => false,
+            'classPrefixFiles' => true,
+            'generateAccessors' => true,
         );
         
         $options += $this->getArguments();
